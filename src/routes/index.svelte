@@ -2,6 +2,12 @@
 	export const prerender = true;
 </script>
 
+<script>
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+</script>
+
 <header class="container">
 	<h1>
 		Hi! Let's test <a href="https://docs.netlify.com/forms/setup/" rel="noopener noreferrer"
@@ -49,12 +55,38 @@
 				To sort this out, we can use the <strong>PreRender</strong> feature that comes with
 				SvelteKit, setting our <em>svelte.config.js</em> like this:
 			</p>
-				<img
-					src="https://i.postimg.cc/vBtn3z1Q/Net-Forms-1.png"
-					alt="Code screenshot" class="container"
-				/>
-                <p>And then in our component:</p>
-                <img src="https://i.postimg.cc/D0yKXvk2/net-form-2.png" alt="Code Screenshot" class="container">
+			<img
+				src="https://i.postimg.cc/vBtn3z1Q/Net-Forms-1.png"
+				alt="Code screenshot"
+				class="container"
+			/>
+			<p>And then in our component:</p>
+			<img
+				src="https://i.postimg.cc/D0yKXvk2/net-form-2.png"
+				alt="Code Screenshot"
+				class="container"
+			/>
 		</article>
+	</section>
+	<section>
+		<form class="container" netlify on:submit="{(event) => handleSubmit(event)}">
+			<div class="grid">
+				<label for="firstname">
+					Your name
+					<input type="text" id="firstname" name="firstname" required />
+				</label>
+
+				<label for="email">
+					Your email
+					<input type="email" id="email" name="email" required />
+				</label>
+			</div>
+
+			<label for="message">Your message</label>
+			<textarea id="message" name="message"/>
+			<small>(I'll never share your email with anyone else)</small>
+
+			<button type="submit">Submit</button>
+		</form>
 	</section>
 </main>
