@@ -8,12 +8,22 @@
 
 		const form = document.querySelector('form');
 		const formData = new FormData(form);
+
+		function encode(data) {
+			return Object.keys(data)
+				.map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+				.join('&');
+		}
+
 		fetch('/', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: new URLSearchParams(formData).toString()
+			body: encode({
+				'form-name': e.target.getAttribute('name'),
+				...name
+			})
 		})
-			.then(() => console.log('Form successfully submitted'))
+			.then(() => console.log("ok"))
 			.catch((error) => alert(error));
 	};
 </script>
@@ -79,7 +89,7 @@
 		</article>
 	</section>
 	<section>
-		<form class="container" netlify on:submit={(event) => handleSubmit(event)}>
+		<form class="container" netlify on:submit={(event) => handleSubmit(event)} name="test-form">
 			<div class="grid">
 				<label for="firstname">
 					Your name
