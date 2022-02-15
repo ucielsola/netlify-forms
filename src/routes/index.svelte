@@ -3,9 +3,19 @@
 </script>
 
 <script>
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		const form = document.querySelector('form');
+		const formData = new FormData(form);
+		fetch('/', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: new URLSearchParams(formData).toString()
+		})
+			.then(() => console.log('Form successfully submitted'))
+			.catch((error) => alert(error));
+	};
 </script>
 
 <header class="container">
@@ -69,7 +79,7 @@
 		</article>
 	</section>
 	<section>
-		<form class="container" netlify on:submit="{(event) => handleSubmit(event)}">
+		<form class="container" netlify on:submit={(event) => handleSubmit(event)}>
 			<div class="grid">
 				<label for="firstname">
 					Your name
@@ -83,7 +93,7 @@
 			</div>
 
 			<label for="message">Your message</label>
-			<textarea id="message" name="message"/>
+			<textarea id="message" name="message" />
 			<small>(I'll never share your email with anyone else)</small>
 
 			<button type="submit">Submit</button>
