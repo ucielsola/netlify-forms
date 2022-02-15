@@ -88,6 +88,11 @@
 			/>
 		</article>
 	</section>
+    <section>
+        <article>
+            <p>Now, if you fill and submit the form bellow, I'll receive a notification from Netlify!</p>
+        </article>
+    </section>
 	<section>
 		<form class="container" netlify on:submit={(event) => handleSubmit(event)} name="test-form">
 			<div class="grid">
